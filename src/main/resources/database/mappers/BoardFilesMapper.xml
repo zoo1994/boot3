@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.sj.boot3.board.BoardFilesMapper">
+    
+    	<insert id="setFileAdd" parameterType="BoardFilesVO">
+    		INSERT INTO BOARDFILES (FILENUM,NUM,FILENAME,ORINAME)
+			VALUES(NULL,#{num},#{fileName},#{oriName})
+    	</insert>
+    	
+    	<delete id="setFileDelete" parameterType="BoardFilesVO">
+    		DELETE FROM BOARDFILES WHERE FILENUM=#{fileNum}
+    	</delete>
+    	
+    	<select id="getFileDetail"  parameterType="BoardFilesVO" resultType="BoardFilesVO">
+    		SELECT * FROM BOARDFILES WHERE FILENUM = #{fileNum}
+    	</select>
+    	
+    	<select id="getFileList" resultType="BoardFilesVO">
+    		SELECT * FROM BOARDFILES
+    	</select>
+    
+    </mapper>

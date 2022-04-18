@@ -18,6 +18,17 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+	<!--tomcat-jasper for JSP in Sprng boot -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+    		<groupId>org.projectlombok</groupId>
+    		<artifactId>lombok</artifactId>
+    		<scope>provided</scope>
+		</dependency>	
 	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
    	 		<groupId>javax.servlet</groupId>
