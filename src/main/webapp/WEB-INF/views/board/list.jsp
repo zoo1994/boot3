@@ -43,6 +43,17 @@
 	</table>
 	</div>
 </div>
+<div class="justify-content-center">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  	<li class="page-item"><a class="page-link" href="./list?pageNum=${pager.pre?pager.startPageNum-1:pager.startPageNum}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
+  <c:forEach begin="${pager.startPageNum}" end="${pager.lastPageNum}" var="i">
+  	 <li class="page-item"><a class="page-link" href="./list?pageNum=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+  </c:forEach>
+  	 <li class="page-item"><a class="page-link" href="./list?pageNum=${pager.next?pager.lastPageNum+1:pager.lastPageNum}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
+  </ul>
+</nav>
+</div>
 	<div class="row mt-4">
       <form action="list" method="get" class="d-flex">
       <div class="co1-1">

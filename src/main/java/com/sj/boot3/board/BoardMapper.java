@@ -12,6 +12,8 @@ import com.sj.boot3.util.Pager;
 @Mapper
 public interface BoardMapper {
 	
+	public Integer totalPage(Pager pager)throws Exception;
+	
 	public BoardVO getDetail(BoardVO boardVO)throws Exception;
 	
 	public List<BoardVO> getList(Pager pager)throws Exception;

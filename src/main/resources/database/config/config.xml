@@ -8,6 +8,7 @@
 	<typeAliases>	
 		<typeAlias type = "java.util.List" alias="List"/>
 		<typeAlias type = "java.lang.Long" alias="Long"/>
+		<typeAlias type = "java.lang.Integer" alias="Integer"/>
 		<typeAlias type="com.sj.boot3.board.BoardVO" alias="BoardVO"/>
 		<typeAlias type="com.sj.boot3.board.BoardFilesVO" alias="BoardFilesVO"/>
 		<typeAlias type="com.sj.boot3.util.Pager" alias="Pager"/>
