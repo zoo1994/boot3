@@ -24,8 +24,8 @@ class BoardFilesTest {
 	
 	//@Test
 	public void getLiatTest()throws Exception{
-		List<BoardFilesVO> ar = boardFilesMapper.getFileList();
-		assertNotEquals(0,ar);
+		//List<BoardFilesVO> ar = boardFilesMapper.getFileList();
+		//assertNotEquals(0,ar);
 	}
 	//@Test
 	public void setAddTest()throws Exception{

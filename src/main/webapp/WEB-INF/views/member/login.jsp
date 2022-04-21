@@ -22,35 +22,23 @@
 	<div class="container mt-4">
 		<div class="row mt-4">
 			<div class="alert alert-primary" role="alert">
-				<h4 class="text-center" style="text-transform: capitalize;">${board}Add
+				<h4 class="text-center" style="text-transform: capitalize;">${board}Login
 					Page</h4>
 			</div>
-			<form action="./add" method="post" enctype="multipart/form-data">
+			<form action="./login" method="post" enctype="multipart/form-data">
 				<div class="row mt-4">
 					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">Title
-						</label> <input type="text" name="title" class="form-control"
+						<label for="exampleFormControlInput1" class="form-label">id
+						</label> <input type="text" name="id" class="form-control"
 							id="exampleFormControlInput1">
 					</div>
 					<div class="mb-3">
-						<label for="exampleFormControlInput2" class="form-label">Writer
-						</label> <input type="text" name="writer" class="form-control"
+						<label for="exampleFormControlInput2" class="form-label">pw
+						</label> <input type="password" name="pw" class="form-control"
 							id="exampleFormControlInput2">
 					</div>
-					<div class="mb-3">
-						<label for="exampleFormControlTextarea1" class="form-label">Contents</label>
-						<textarea class="form-control" name="contents"
-							id="exampleFormControlTextarea1" rows="3"></textarea>
-					</div>
-				</div>
-				      <input class="form-control form-control-lg" type="file" name="files">
-            </div>
-            <div class="mb-3">
-            
-               <input class="form-control form-control-lg" type="file" name="files">
-            </div>
 				<div class="row justify-content-end">
-					<button type="submit" class="col-1 btn btn-outline-success">Add</button>
+					<button type="submit" class="col-1 btn btn-outline-success">login</button>
 				</div>
 			</form>
 		</div>

@@ -18,8 +18,8 @@
     		SELECT * FROM BOARDFILES WHERE FILENUM = #{fileNum}
     	</select>
     	
-    	<select id="getFileList" resultType="BoardFilesVO">
-    		SELECT * FROM BOARDFILES
+    	<select id="getFileList" parameterType="BoardVO" resultType="BoardFilesVO">
+    		SELECT * FROM BOARDFILES where num = #{num}
     	</select>
     
     </mapper>

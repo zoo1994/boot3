@@ -22,38 +22,32 @@
 	<div class="container mt-4">
 		<div class="row mt-4">
 			<div class="alert alert-primary" role="alert">
-				<h4 class="text-center" style="text-transform: capitalize;">${board}Add
+				<h4 class="text-center" style="text-transform: capitalize;">${board} update
 					Page</h4>
 			</div>
-			<form action="./add" method="post" enctype="multipart/form-data">
+			<form action="./update" method="post" enctype="multipart/form-data">
 				<div class="row mt-4">
 					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">Title
-						</label> <input type="text" name="title" class="form-control"
-							id="exampleFormControlInput1">
-					</div>
 					<div class="mb-3">
-						<label for="exampleFormControlInput2" class="form-label">Writer
-						</label> <input type="text" name="writer" class="form-control"
+						<label for="exampleFormControlInput2" class="form-label">email
+						</label> <input type="text" name="email" class="form-control"
 							id="exampleFormControlInput2">
 					</div>
 					<div class="mb-3">
-						<label for="exampleFormControlTextarea1" class="form-label">Contents</label>
-						<textarea class="form-control" name="contents"
-							id="exampleFormControlTextarea1" rows="3"></textarea>
+						<label for="exampleFormControlInput2" class="form-label">phone
+						</label> <input type="text" name="phone" class="form-control"
+							id="exampleFormControlInput2">
 					</div>
+
 				</div>
-				      <input class="form-control form-control-lg" type="file" name="files">
-            </div>
-            <div class="mb-3">
-            
-               <input class="form-control form-control-lg" type="file" name="files">
-            </div>
-				<div class="row justify-content-end">
-					<button type="submit" class="col-1 btn btn-outline-success">Add</button>
-				</div>
-			</form>
+				
 		</div>
+
+		<div class="row justify-content-end">
+			<button type="submit" class="col-1 btn btn-outline-success">수정</button>
+		</div>
+		</form>
+	</div>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
