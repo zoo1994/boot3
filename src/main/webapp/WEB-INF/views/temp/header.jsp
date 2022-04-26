@@ -13,7 +13,10 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/board/list">List</a>
+          <a class="nav-link active" href="/board/list">Board</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/product/list">Product</a>
         </li>
         <c:choose>
         	<c:when test="${empty member}">

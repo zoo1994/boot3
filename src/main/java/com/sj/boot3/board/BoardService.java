@@ -42,6 +42,7 @@ public class BoardService {
 	public int setAdd(BoardVO boardVO,MultipartFile[] files) throws Exception {
 		int result = boardMapper.setAdd(boardVO);
 		for(MultipartFile mf : files) {
+			if(files!=null) {
 			if(mf.isEmpty()) {
 				continue;
 			}
@@ -53,7 +54,7 @@ public class BoardService {
 			boardFilesVO.setFileName(fileName);
 			boardFilesVO.setOriName(mf.getOriginalFilename());
 			boardFilesMapper.setFileAdd(boardFilesVO);	
-		}
+		}}
 		
 		return result;
 	}

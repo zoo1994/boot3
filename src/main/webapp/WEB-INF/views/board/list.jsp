@@ -69,6 +69,7 @@
        </div>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      
       <div class="row justify-content-end">
 		<a href="./add" type="button" class="col-1 btn btn-outline-success ">Add</a>
 	</div>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.sj.boot3.product.ProductMapper">
+    	
+    	<select id="fileList" parameterType="ProductVO" resultType="ProductFilesVO">
+    		SELECT * PRODUCTFILES WHERE PRODUCTNUM=${productNum}
+    	</select>
+    	
+    	<insert id="addFile" parameterType="ProductFilesVO">
+    		INSERT INTO PRODUCTFILES (FILENUM,PRODUCTNUM,FILENAME,ORINAME)
+    		VALUES (NULL,#{productNum},#{fileName},#{oriName})
+    	</insert>
+    	
+    	<select id="getTotal" resultType="Integer">
+    		SELECT COUNT(PRODUCTNUM) FROM PRODUCT
+    	</select>				
+    					
+    	<insert id="setAdd" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
+    		INSERT INTO PRODUCT (PRODUCTNUM,PRODUCTNAME,PRODUCTPRICE,PRODUCTCOUNT,PRODUCTDETAIL)
+    		VALUES (#{productNum},#{productName},#{productPrice},#{productCount},#{productDetail})
+    	</insert>
+    	
+    	<select id="getList" parameterType="Pager" resultMap="listResult">
+    		SELECT P.*,F.*
+    		FROM (SELECT * FROM PRODUCT WHERE 
+    		<choose>
+				<when test="kind==2">PRODUCTDETAIL </when>
+				<otherwise>PRODUCTNAME</otherwise>
+			</choose>
+    		LIKE CONCAT('%',#{search},'%')
+    		ORDER BY PRODUCTNUM DESC LIMIT #{startRow},#{perPage}) P
+    		LEFT JOIN PRODUCTFILES F 
+    		ON (P.PRODUCTNUM=F.PRODUCTNUM) 
+    		WHERE P.PRODUCTNUM > 0 
+    	</select>
+    	<resultMap type="ProductVO" id="listResult">
+    		<id column="productNum" property="productNum"/>
+    		<result column="productName" property="productName"/>
+    		<result column="productPrice" property="productPrice"/>
+    		<result column="productCount" property="productCount"/>
+    		<result column="productDetail" property="productDetail"/>
+    		<collection property="filesVO" javaType="List" ofType="ProductFilesVO">
+    			<id column="fileNum" property="fileNum"/>
+    			<result column="fileName" property="fileName"/>
+    			<result column="oriName" property="oriName"/>
+    		</collection>
+    	</resultMap>
+    	
+    	
+    </mapper>

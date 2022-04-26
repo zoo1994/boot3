@@ -24,7 +24,7 @@ class BoardTest {
 		assertNotNull(boardVO);
 	}
 	
-	@Test
+	//@Test
 	public void getLiatTest()throws Exception{
 		Pager pager = new Pager();
 		pager.makeRow();
