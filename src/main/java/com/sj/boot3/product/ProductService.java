@@ -23,7 +23,7 @@ public class ProductService {
 			if(mf.isEmpty()) {
 				continue;
 			}
-			String fileName = fileManager.fileSava(mf, "resources/upload/product/");
+			String fileName = fileManager.fileSave(mf, "resources/upload/product/");
 			ProductFilesVO pf = new ProductFilesVO();
 			pf.setProductNum(productVO.getProductNum());
 			pf.setFileName(fileName);

@@ -26,13 +26,14 @@ public class MemberService {
 				if(mf.isEmpty()) {
 					continue;
 				}
-				String fileName = fileManager.fileSava(mf, "resources/upload/member/");
+				String fileName = fileManager.fileSave(mf, "resources/upload/member/");
 				MemberFilesVO memberFilesVO = new MemberFilesVO();
 				memberFilesVO.setId(memberVO.getId());
 				memberFilesVO.setFileName(fileName);
 				memberFilesVO.setOriName(mf.getOriginalFilename());
 				int result2 = memberMapper.fileAdd(memberFilesVO);
 			}
+			int result3 = memberMapper.joinMemberRole(memberVO);
 		}
 		return result;
 	}

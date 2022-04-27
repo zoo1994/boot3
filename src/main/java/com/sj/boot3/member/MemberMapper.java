@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 	
+	public int joinMemberRole(MemberVO memberVO)throws Exception;
 	public int join(MemberVO memberVO)throws Exception;
 	public MemberVO login(MemberVO memberVO)throws Exception;
 	public MemberVO myPage(MemberVO memberVO)throws Exception;

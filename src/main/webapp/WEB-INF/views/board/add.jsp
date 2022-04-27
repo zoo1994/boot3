@@ -41,9 +41,9 @@
 							id="exampleFormControlInput2">
 					</div>
 					<div class="mb-3">
-						<label for="exampleFormControlTextarea1" class="form-label" id="textContent">Contents</label>
+						<label for="exampleFormControlTextarea1" class="form-label" id="content"></label>
 						<textarea class="form-control" name="contents"
-							id="exampleFormControlTextarea1" rows="3"></textarea>
+							id="contents" rows="3"></textarea>
 					</div>
 				</div>
 		<div id="fileResult"></div>
@@ -57,8 +57,48 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		$('#textContent').summernote({
-			height:400
+		$('#contents').summernote({
+			height:400,
+			placeholder:'내용을 입력하세요',
+			callbacks: {
+				onImageUpload:function(files){
+					//files upload한 이미지 파일객체
+					let formData = new FormData();
+					formData.append("files",files[0]);
+					formData.append("productName",$("#productName").val());
+					formData.append("productPrice",$("#productPrice").val());
+					formData.append("productCount",$("#productCount").val());
+					formData.append("productDetail",$("#productDetail").summernote("code"));
+					// /board/suumerFileUpload
+					$.ajax({
+						type : "POST",
+						url : "./summerFileUpload",
+						processData : false,
+						contentType : false,
+						data : formData ,
+						success : function(data) {
+							$("#contents").summernote('editor.insertImage',data.trim());
+						},
+						error : function() {
+							alert('등록실패');
+						}
+					});
+				}, //onImageUpload끝
+				onMediaDelete:function(files){
+					let fileName=$(files[0]).attr("src");
+					console.log(fileName);
+					$.ajax({
+						type:"GET",
+						url:"./summerFileDelete",
+						data:{
+							fileName : fileName
+						},
+						succesc:function(data){
+							console.log(data);
+						}
+					})
+				}//onMediaDelete끝
+			}
 		});
 		let v = '<div class="mb-3"><input class="form-control form-control-lg" type="file" name="files"><button  type="button" class="col-1 btn btn-outline-success delBtn">x</button></div>'
 		let count = 0;

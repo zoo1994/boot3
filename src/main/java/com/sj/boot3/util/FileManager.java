@@ -15,7 +15,7 @@ public class FileManager {
 	@Autowired
 	private ServletContext servletContext;
 	
-	public String fileSava(MultipartFile mf, String path)throws Exception{
+	public String fileSave(MultipartFile mf, String path)throws Exception{
 		//path = 프로젝트상의 파일을 저장할 폴더경로
 		//1. 파일을 hdd에 저장
 		//2. 저장된 파일명을 리턴(파일명 중복x)

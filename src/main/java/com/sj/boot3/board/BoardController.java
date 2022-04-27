@@ -27,6 +27,27 @@ public class BoardController {
 		return "board";
 	}
 	
+	@GetMapping("summerFileDelete")
+	public ModelAndView summerFileDelete(String fileName)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(fileName);
+		boolean result = boardService.summerFileDelete(fileName);
+		mv.setViewName("common/result");
+		mv.addObject("result",fileName);
+		return mv;
+	}
+	
+	@PostMapping("summerFileUpload")
+	public ModelAndView summerFileUpload(MultipartFile files)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String fileName = boardService.setSummerFileUpload(files);
+		System.out.println(fileName);
+		mv.setViewName("common/result");
+		mv.addObject("result",fileName);
+		
+		return mv; 
+	}
+	
 	@GetMapping("fileDown")
 	public ModelAndView getFileDown(BoardFilesVO boardFilesVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -40,7 +61,6 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView();
 		List<BoardVO> ar = boardService.getList(pager);
 		mv.addObject("list",ar);
-		mv.addObject("search",pager.getSearch());
 		mv.addObject("pager",pager);
 		mv.setViewName("board/list");
 		return mv; 
