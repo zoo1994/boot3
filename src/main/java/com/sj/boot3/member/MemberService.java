@@ -1,16 +1,21 @@
 package com.sj.boot3.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sj.boot3.util.FileManager;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class MemberService {
 	
 	@Autowired
@@ -18,9 +23,15 @@ public class MemberService {
 
 	@Autowired
 	private MemberMapper memberMapper;
+	//properties파일의 member.role.member 속성값 반환
+	@Value("${member.role.member}")
+	private String memberRole;
 	
 	public int join(MemberVO memberVO, MultipartFile[] files)throws Exception{
 		int result = memberMapper.join(memberVO);
+		Map<String, String> map = new HashMap<>();
+		map.put("id",memberVO.getId());
+		map.put("roleName", memberRole);
 		if(result>0) {
 			for(MultipartFile mf : files) {
 				if(mf.isEmpty()) {
@@ -33,7 +44,7 @@ public class MemberService {
 				memberFilesVO.setOriName(mf.getOriginalFilename());
 				int result2 = memberMapper.fileAdd(memberFilesVO);
 			}
-			int result3 = memberMapper.joinMemberRole(memberVO);
+			int result3 = memberMapper.setRoleAdd(map);
 		}
 		return result;
 	}

@@ -38,7 +38,7 @@
 					<div class="mb-3">
 						<label for="exampleFormControlInput2" class="form-label">Writer
 						</label> <input type="text" name="writer" class="form-control"
-							id="exampleFormControlInput2">
+							id="exampleFormControlInput2" readonly="readonly" value="${member.id}">
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label" id="content"></label>

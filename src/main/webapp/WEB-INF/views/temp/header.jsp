@@ -18,6 +18,20 @@
         <li class="nav-item">
           <a class="nav-link active" href="/product/list">Product</a>
         </li>
+        <c:forEach items="${member.roleVOs}" var="i">
+        	<c:if test="${i.roleName eq 'ROLE_SELLER'}">
+        		<li class="nav-item">
+          			<a class="nav-link active" href="/product/manage">Product 관리</a>
+        		</li>
+        	</c:if>
+        </c:forEach>
+                <c:forEach items="${member.roleVOs}" var="i">
+        	<c:if test="${i.roleName eq 'ROLE_ADMIN'}">
+        		<li class="nav-item">
+          			<a class="nav-link active" href="/admin/manage">관리자 모드</a>
+        		</li>
+        	</c:if>
+        </c:forEach>
         <c:choose>
         	<c:when test="${empty member}">
         		<li class="nav-item">

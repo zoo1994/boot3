@@ -53,6 +53,18 @@
 							id="productCount">
 					</div>
 					<div class="mb-3">
+						<div class="form-check">
+							<input class="form-check-input sale" name="productSale" type="radio"
+								value="1" id="flexCheckDefault"> <label
+								class="form-check-label" for="flexCheckDefault"> 판매 </label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input sale" name="productSale" type="radio"
+								value="0" id="flexCheckChecked" checked> <label
+								class="form-check-label" for="flexCheckChecked"> 판매중지 </label>
+						</div>
+					</div>
+					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" id="productDetail"
 							class="form-label"></label>
 						<textarea class="form-control" name="productDetail"
@@ -72,7 +84,6 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		getList(1);
 		function getList(pn) {
 			$.ajax({
 				type : "GET",
@@ -86,38 +97,45 @@
 				}
 			});
 		}
-
+		getList(0);
 		$("#list").click(function(event) {
-			if ($(event.target).attr("class") == "page-link pageNumber") {
-				let pageNum = $(event.target).attr("data-value");
+			if($(event.target).attr("class")== "page-link pageNumber") {
+				let pageNum=$(event.target).attr(
+								"data-value");
 				getList(pageNum);
 			}
-			if ($(event.target).attr("class") == "page-link pager") {
-				let a = $(event.target).attr("data-pn");
-				if (a > 0) {
-					getList(a);
-				}
-			}
-		});
-		$("#addBtn").click(function() {
+			if ($(event.target).attr("class")== "page-link pager") {
+				let a=$(event.target).attr( "data-pn");
+				if (a> 0) {
+					getList(a); } } });
+		$("#addBtn").click(function() { 
 			let formData = new FormData();
-
 			$(".files").each(function(idx, item) {
-				if(item.files.length>0){
-					formData.append("files", item.files[0]);
-				}
-				//console.log(idx); // index번호
-				//console.log(item); //<input type ="file"
-				//console.log(item.files); //input 태그의 file리스트
+						if(item.files.length>0){ 
+							formData.append("files", item.files[0]);
+							}
+						//console.log(idx); 
+						// index번호 
+						//console.log(item);
+						//<input type="file" 
+						//console.log(item.files); 
+						//input 태그의 file리스트
 				//console.log(item.files[0]); //file list중 첫번째 파일
 				//console.log(item.files[0].name); //첫번째 파일의 이름
 				//formData.apppend("파라미터값", 값)
 				
 			});
+			let sale=0;
+			$(".sale").each(function (idx,item){
+				if($(item).prop("checked")){
+					sale=$(item).val();
+				}
+			})
 			formData.append("productName",$("#productName").val());
 			formData.append("productPrice",$("#productPrice").val());
 			formData.append("productCount",$("#productCount").val());
 			formData.append("productDetail",$("#productDetail").summernote("code"));
+			formData.append("productSale",sale);
 			$.ajax({
 				type : "POST",
 				url : "./add",
@@ -125,7 +143,7 @@
 				contentType : false,
 				data : formData ,
 				success : function(data) {
-					if (data.trim() == '1') {
+					if (data.trim()== '1') {
 						alert("상품등록 완료");
 						getList();
 						$("#productName").val("");
@@ -136,7 +154,7 @@
 						alert("상품등록 실패");
 					}
 				},
-				error : function() {
+				error :	function() {
 					alert('실패');
 				}
 			})
@@ -145,21 +163,17 @@
 		$('#productDetail').summernote({
 			height : 400
 		});
-		let v = '<div class="mb-3"><input class="form-control form-control-lg files" type="file" name="files"><button  type="button" class="col-1 btn btn-outline-success delBtn">x</button></div>'
-		let count = 0;
-		$("#fileAdd").click(function() {
-			if (count > 4) {
-				alert("파일을 최대 5개");
-				return;
-			}
+		let v='<div class="mb-3"><input class="form-control form-control-lg files" type="file" name="files"><button  type="button" class="col-1 btn btn-outline-success delBtn">x</button></div>'
+		let count=0; $("#fileAdd").click(function() {
+			if (count> 4) { 
+				alert("파일을 최대 5개"); 
+				return; }
 			count++;
-			$("#fileResult").append(v);
-		});
-		$("#fileResult").on("click", ".delBtn", function() {
-			$(this).parent().remove();
-			count--;
-		});
-	</script>
+			$("#fileResult").append(v); }); 
+			$("#fileResult").on("click",".delBtn", function() {
+				$(this).parent().remove();
+				count--; });
+		</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

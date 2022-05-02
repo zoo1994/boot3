@@ -1,43 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+ <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<style type="text/css">
-	.detail{
-		cursor:pointer;
-	}
-</style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 <title>Insert title here</title>
 </head>
 <body>
-	<c:import url="../temp/header.jsp"></c:import>
+<c:import url="../temp/header.jsp"></c:import>
 
-	<div class="container mt-4">
+<div class="container mt-4">
 
 		<div class="row mt-4">
 			<c:forEach items="${list}" var="vo">
-				<div class="card detail" data-num="${vo.productNum}" style="width: 18rem;">
+				<div class="card" style="width: 18rem;">
 					<img src="../resources/upload/product/${vo.filesVO[0].fileName}"
 						class="card-img-top" alt="...">
 					<div class="card-body">
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Name : ${vo.productName}</li>
+							<li class="list-group-item detail" data-num="${vo.productNum}">Name : ${vo.productName}</li>
 							<li class="list-group-item">Price : ${vo.productPrice}원</li>
 							<li class="list-group-item">Count : ${vo.productCount}개</li>
-							<li class="list-group-item">Detail : ${vo.productDetail}</li>
+							<li class="list-group-item">판매여부 : ${vo.productSale eq '0'?'판매중지':'판매중'}</li>
 						</ul>
+						<a href="#" class="btn btn-primary">자세히</a>
 					</div>
 				</div>
 			</c:forEach>
@@ -74,18 +67,26 @@
 			</div>
 			<button class="btn btn-outline-success" type="submit">Search</button>
 		</form>
+		<div class="row justify-content-end">
+			<a href="./add" type="button" class="col-1 btn btn-outline-success ">Add</a>
+		</div>
+		<form action="./manage" id="frm">
+			<input type="hidden" name="pn" id="pn" value="${pager.pageNum}">
+		</form>
 	</div>
+
+
 <c:import url="../temp/header_script.jsp"></c:import>
-	<script type="text/javascript">
-		$(".detail").click(function(){
-			console.log('f')
-			let num = $(this).attr("data-num");
-			location.href="./detail?productNum="+num
-		});
-	</script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(".pager").click(function(){
+		let pn = $(this).attr("pn");
+		$("#pn").val(pn);
+		$("#frm").submit();
+	});
+	$(".detail").click(function(){
+		let num = $(this).attr("data-num");
+		location.href = "./manageDetail?productNum="+num
+	});
+</script>
 </body>
 </html>

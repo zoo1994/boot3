@@ -90,7 +90,7 @@ public class MemberController {
 		}
 		mv.addObject("path",path);
 		mv.addObject("message",message);
-		mv.setViewName("common/result");
+		mv.setViewName("common/result2");
 		return mv;
 	}
 	

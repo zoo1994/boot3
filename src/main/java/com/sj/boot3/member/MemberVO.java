@@ -12,4 +12,5 @@ public class MemberVO {
 	private String email;
 	private String phone;
 	private List<MemberFilesVO> filesVOs;
+	private List<RoleVO> roleVOs;
 }

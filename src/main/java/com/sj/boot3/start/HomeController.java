@@ -16,7 +16,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String start()throws Exception{
-		transferService.go();
+		// transferService.go();
 		return "index";
 	}
 	

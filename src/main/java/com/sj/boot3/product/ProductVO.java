@@ -11,5 +11,7 @@ public class ProductVO {
 	private Long productPrice;
 	private Long productCount;
 	private String productDetail;
+	private Long productSale;
+	private String id;
 	private List<ProductFilesVO> filesVO;
 }

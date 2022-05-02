@@ -5,9 +5,9 @@
  
     <mapper namespace="com.sj.boot3.member.MemberMapper">
     	
-    	<insert id="joinMemberRole" parameterType="MemberVO">
+    	<insert id="setRoleAdd" parameterType="Map">
     		INSERT INTO MEMBERROLE(ID,ROLEID)
-			VALUES (#{id},3);
+			VALUES (#{id},(SELECT ROLEID FROM ROLE WHERE ROLENAME=#{roleName}));
     	</insert>
     	
         <select id="getFileList" parameterType="MemberVO" resultType="MemberFilesVO">
@@ -24,9 +24,21 @@
     		VALUES (#{id},#{pw},#{name},#{email},#{phone})
     	</insert>
     	
-    	<select id="login" parameterType="MemberVO" resultType="MemberVO">
-    		SELECT ID,NAME FROM MEMBER WHERE ID = #{id} AND PW = #{pw}
+    	<select id="login" parameterType="MemberVO" resultMap="loginResult">
+    		SELECT M.ID,M.NAME,(SELECT ROLENAME FROM ROLE WHERE ROLEID=R.ROLEID) ROLENAME
+			FROM MEMBER M
+			LEFT JOIN
+			MEMBERROLE R
+			USING(ID)
+			WHERE ID=#{id} AND M.PW=#{pw}
     	</select>
+    	<resultMap type="MemberVO" id="loginResult">
+    		<id column="id" property="id"/>
+    		<result column="name" property="name"/>
+    		<collection property="roleVOs" javaType="List" ofType="RoleVO">
+    			<result column="roleName" property="roleName"/>
+    		</collection>
+    	</resultMap>
     	
     	<select id="myPage" parameterType="MemberVO" resultMap="myPageResult">
     		SELECT M.*,F.*
@@ -34,7 +46,7 @@
 			LEFT JOIN
 			MEMBERFILES F 
 			USING(ID)
-			WHERE ID= #{id}
+			WHERE ID= #{id} 
     	</select>
     	<resultMap type="MemberVO" id="myPageResult">
     		<id column="id" property="id"/>
