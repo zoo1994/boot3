@@ -25,6 +25,22 @@ public class MemberController {
 		return "member";
 	}
 	
+	@GetMapping("findId")
+	public ModelAndView findId()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/findId");
+		return mv;
+	}
+	
+	@PostMapping("findId")
+	public ModelAndView findId(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberVO = memberService.findId(memberVO);
+		mv.addObject("find",memberVO);
+		mv.setViewName("member/findResult");
+		return mv;
+	}
+	
 	@PostMapping("update")
 	public ModelAndView update(MemberVO memberVO,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();

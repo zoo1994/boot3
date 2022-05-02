@@ -19,39 +19,28 @@
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
+	<c:import url="../temp/header_script.jsp"></c:import>
 	<div class="container mt-4">
 		<div class="row mt-4">
 			<div class="alert alert-primary" role="alert">
-				<h4 class="text-center" style="text-transform: capitalize;">${board}Login
-					Page</h4>
+				<h4 class="text-center" style="text-transform: capitalize;">Id
+					Search Page</h4>
 			</div>
-			<form action="./login" method="post" enctype="multipart/form-data">
+			<form action="./findId" method="post" enctype="multipart/form-data">
 				<div class="row mt-4">
 					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">id
-						</label> <input type="text" name="id" class="form-control"
+						<label for="exampleFormControlInput1" class="form-label">email
+						</label> <input type="text" name="email" class="form-control"
 							id="exampleFormControlInput1">
 					</div>
-					<div class="mb-3">
-						<label for="exampleFormControlInput2" class="form-label">pw
-						</label> <input type="password" name="pw" class="form-control"
-							id="exampleFormControlInput2">
-					</div>
+				</div>
 				<div class="row justify-content-end">
-					<button type="submit" class="col-1 btn btn-outline-success">login</button>
-				</div>
-				<div class="row">
-					<button id="find" type="button" class="btn btn-danger">Id찾기</button>
-				</div>
+					<button type="submit" class="col-1 btn btn-outline-success">찾기</button>
 				</div>
 			</form>
 		</div>
 	</div>
-	<c:import url="../temp/header_script.jsp"></c:import>
 	<script type="text/javascript">
-		$("#find").click(function(){
-			window.location.href="./findId"
-		})
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

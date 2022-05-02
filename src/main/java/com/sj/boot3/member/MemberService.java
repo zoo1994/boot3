@@ -27,6 +27,10 @@ public class MemberService {
 	@Value("${member.role.member}")
 	private String memberRole;
 	
+	public MemberVO findId(MemberVO memberVO)throws Exception{
+		return memberMapper.findId(memberVO);
+	}
+	
 	public int join(MemberVO memberVO, MultipartFile[] files)throws Exception{
 		int result = memberMapper.join(memberVO);
 		Map<String, String> map = new HashMap<>();

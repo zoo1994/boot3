@@ -5,6 +5,10 @@
  
     <mapper namespace="com.sj.boot3.member.MemberMapper">
     	
+    	<select id="findId"  parameterType="MemberVO" resultType="MemberVO">
+    		SELECT * FROM MEMBER WHERE EMAIL=#{email}
+    	</select>
+    	
     	<insert id="setRoleAdd" parameterType="Map">
     		INSERT INTO MEMBERROLE(ID,ROLEID)
 			VALUES (#{id},(SELECT ROLEID FROM ROLE WHERE ROLENAME=#{roleName}));

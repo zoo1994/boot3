@@ -12,6 +12,7 @@ public interface MemberMapper {
 	public int join(MemberVO memberVO)throws Exception;
 	public MemberVO login(MemberVO memberVO)throws Exception;
 	public MemberVO myPage(MemberVO memberVO)throws Exception;
+	public MemberVO findId(MemberVO memberVO)throws Exception;
 	public int update(MemberVO memberVO)throws Exception;
 	public int delete(MemberVO memberVO)throws Exception;
 	public int fileAdd(MemberFilesVO memberFilesVO)throws Exception;
