@@ -16,8 +16,8 @@ class ProductTest {
 	
 	//@Test
 	public void getTotalTest()throws Exception{
-		int result = productMapper.getTotal();
-		assertEquals(4, result);
+		//int result = productMapper.getTotal();
+		//assertEquals(4, result);
 	}
 	
 	//@Test
