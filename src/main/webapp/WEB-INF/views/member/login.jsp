@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,32 +26,34 @@
 				<h4 class="text-center" style="text-transform: capitalize;">${board}Login
 					Page</h4>
 			</div>
-			<form action="./login" method="post" enctype="multipart/form-data">
+			<form action="./login" method="post">
 				<div class="row mt-4">
 					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">id
-						</label> <input type="text" name="id" class="form-control"
+						<label for="exampleFormControlInput1" class="form-label">id</label>
+					<input type="text" name="id" class="form-control"
 							id="exampleFormControlInput1">
+				
 					</div>
 					<div class="mb-3">
-						<label for="exampleFormControlInput2" class="form-label">pw
-						</label> <input type="password" name="pw" class="form-control"
+						<label for="exampleFormControlInput2" class="form-label">pw</label>
+						<input type="password" name="pw" class="form-control"
 							id="exampleFormControlInput2">
+
 					</div>
-				<div class="row justify-content-end">
-					<button type="submit" class="col-1 btn btn-outline-success">login</button>
-				</div>
-				<div class="row">
-					<button id="find" type="button" class="btn btn-danger">Id찾기</button>
-				</div>
+					<div class="row justify-content-end">
+						<button type="submit" class="col-1 btn btn-outline-success">login</button>
+					</div>
+					<div class="row">
+						<button id="find" type="button" class="btn btn-danger">Id찾기</button>
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 	<c:import url="../temp/header_script.jsp"></c:import>
 	<script type="text/javascript">
-		$("#find").click(function(){
-			window.location.href="./findId"
+		$("#find").click(function() {
+			window.location.href = "./findId"
 		})
 	</script>
 	<script

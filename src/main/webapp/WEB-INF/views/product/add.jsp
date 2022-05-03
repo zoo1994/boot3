@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,7 @@
 						class="col-1 btn btn-outline-success">FileAdd</button>
 				</div>
 				<div class="row justify-content-end">
-					<button id="addBtn" type="button"
+					<button id="addBtn" type="submit"
 						class="col-1 btn btn-outline-success">Add</button>
 				</div>
 			</form>

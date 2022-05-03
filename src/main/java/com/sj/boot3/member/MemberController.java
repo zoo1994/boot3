@@ -1,9 +1,12 @@
 package com.sj.boot3.member;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -96,6 +99,7 @@ public class MemberController {
 	@PostMapping("login")
 	public ModelAndView login(HttpSession session, MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+
 		memberVO = memberService.login(memberVO);
 		String message = "로그인 실패";
 		String path = "./login";
@@ -113,20 +117,25 @@ public class MemberController {
 	@GetMapping("login")
 	public ModelAndView login()throws Exception{
 		ModelAndView mv = new ModelAndView();
+		//mv.addObject("vo",new MemberVO());
 		mv.setViewName("member/login");
 		return mv;
 	}
 	
 	@GetMapping("join")
-	public ModelAndView join()throws Exception{
+	public ModelAndView join(@ModelAttribute MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/join");
 		return mv;
 	}
 	
 	@PostMapping("join")
-	public ModelAndView join(MemberVO memberVO,MultipartFile[] files)throws Exception{
+	public ModelAndView join(MultipartFile[] files,@Valid MemberVO memberVO,BindingResult bindingResult)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		if(bindingResult.hasErrors()) {
+			mv.setViewName("member/join");
+			return mv;
+		}
 		int result = memberService.join(memberVO,files);
 		mv.setViewName("redirect:/");
 		return mv;
