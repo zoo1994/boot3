@@ -1,5 +1,6 @@
 package com.sj.boot3.product;
 
+import java.net.BindException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -128,4 +130,37 @@ public class ProductController {
 		mv.setViewName("common/result");
 		return mv;
 	}
+	
+//	//예외처리메서드
+//	@ExceptionHandler(BindException.class)
+//	public ModelAndView ex1()throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("에외발생");
+//		mv.setViewName("error/error");
+//		return mv;
+//	}
+//	
+//	@ExceptionHandler(NullPointerException.class)
+//	public ModelAndView ex2()throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("에외발생");
+//		mv.setViewName("error/error");
+//		return mv;
+//	}
+//	
+//	@ExceptionHandler(Exception.class)
+//	public ModelAndView ex3()throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("에외발생");
+//		mv.setViewName("error/error");
+//		return mv;
+//	}
+//	
+//	@ExceptionHandler(Throwable.class)
+//	public ModelAndView ex4()throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("에외발생");
+//		mv.setViewName("error/error");
+//		return mv;
+//	}
 }
